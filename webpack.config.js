@@ -1,14 +1,11 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
     const plugins = [
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash].css'
-        }),
-        new Dotenv()
+        })
     ]
 
     // if (env.NODE_ENV === "production") {
