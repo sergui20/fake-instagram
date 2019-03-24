@@ -8,7 +8,7 @@ function SigninForm (props) {
                     <input className="input-form" type="email" name="email" placeholder="Correo Electronico" />
                     <input className="input-form" type="password" name="password" placeholder="Contraseña" />
                     {
-                        props.signinMessage.length > 0 &&
+                        props.signinMessage &&
                         <div>
                             <span className="span-flash-message">{props.signinMessage}</span>
                         </div>

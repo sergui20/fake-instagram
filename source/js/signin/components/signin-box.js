@@ -7,7 +7,7 @@ import NoAccount from './dont-has-account';
 
 class SigninBox extends React.Component {
     state = {
-        signinMessage: ''
+        signinMessage: null
     }
 
     getFormData = (ev) => {
