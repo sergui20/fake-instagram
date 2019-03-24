@@ -1,0 +1,15 @@
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #ffffff;
+    height: auto;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
+}
+
+.header-row {
+    margin-bottom: unset;
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,43 @@
+.footer-post {
+    padding: 0 16px;
+}
+
+div.footer-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+}
+
+div.social-footer-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.footer-button{
+    display: contents;
+    cursor: pointer;
+}
+
+.fas.fa-heart {
+    color: red;
+}
+
+.i-social {
+    margin-right: 15px;;
+}
+
+i.footer-post-buttons {
+    font-size: 24px;
+    line-height: unset;
+}
+
+.like-span {
+    color: #262626;
+    font-weight: 600;
+}
+
+span.time-counter{
+    color: #999;
+    text-transform: uppercase;
+    font-size: 10px;
+}

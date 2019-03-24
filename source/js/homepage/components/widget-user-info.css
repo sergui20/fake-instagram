@@ -1,0 +1,32 @@
+div.user-info-container {
+    display: flex;
+}
+
+div.profilePic-container {
+    display: inline-block;
+}
+
+img.widget-profilePic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
+}
+
+div.user-names {
+    display: flex;
+    margin-left: 12px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+span.widget-nickname {
+    color: #262626;
+    font-weight: 600;
+    display: block;
+}
+
+span.widget-user-name {
+    color: #999999;
+    font-size: 12px;
+    display: block;
+}

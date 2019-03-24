@@ -1,0 +1,12 @@
+div.auth-box {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+}
+
+div.has-account-box {
+    background-color: white;
+    margin-top: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+}

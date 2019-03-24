@@ -1,0 +1,29 @@
+.header-account-buttons {
+    line-height: unset;
+    margin-left: 25px;
+}
+
+.widgets {
+    float: right;
+}
+
+.widgets a {
+    display: contents;
+}
+
+div.dropdown-container {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+ul.dropdown-content {
+    display: block;
+    opacity: 1;
+    right: 0;
+    left: unset;
+}
+
+ul.dropdown-content li a {
+    color: #242021;
+}

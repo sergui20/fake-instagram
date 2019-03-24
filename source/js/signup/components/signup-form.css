@@ -1,0 +1,44 @@
+form.main-form {
+    text-align: center;
+    padding: 0 40px;
+}
+
+button.fb-auth, button.submit-button {
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 9px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+button.fb-auth {
+    background-color: #385185;
+    border: 1px solid #385185;
+}
+
+button.submit-button {
+    margin-top: 20px;
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+}
+
+div.divider {
+    margin: 20px 0;
+}
+
+.fb-auth span {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.input-form {
+    border: 1px solid #efefef !important;
+    background-color: #fafafa !important;
+    border-radius: 3px !important;
+}
+
+span.span-flash-message {
+    color: #ed4956;
+}
