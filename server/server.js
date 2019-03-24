@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/platzigram', { useNewUrlParser: true
 })
 
 // ENV variables
-require('dotenv').config()
+// require('dotenv').config()
 
 // Passport config
 // require('./config/passport')(passport);
