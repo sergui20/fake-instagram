@@ -11,11 +11,11 @@ module.exports = (env) => {
         new Dotenv()
     ]
 
-    if (env.NODE_ENV === "production") {
-        plugins.push(
-            new CleanWebpackPlugin()
-        )
-    }
+    // if (env.NODE_ENV === "production") {
+    //     plugins.push(
+    //         new CleanWebpackPlugin()
+    //     )
+    // }
 
     return {
         mode: 'production',
