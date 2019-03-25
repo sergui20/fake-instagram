@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 // const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
 // const passport = require('passport');
 // const session = require('express-session');
 
@@ -25,6 +26,7 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
 app.set('port', process.env.PORT || 8080);
 
 // Middlewares
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
