@@ -68,7 +68,7 @@ module.exports = function (app) {
                         }
 
                         const token = generateToken(payload)
-                        res.cookie('Authorization', `Bearer ${token}`)
+                        res.cookie('Authorization', `Bearer ${token}`, {path: '/homepage'})
                         res.json({
                             ok: true,
                             user: {
@@ -124,7 +124,7 @@ module.exports = function (app) {
             }
 
             const token = generateToken(payload);
-            res.cookie('Authorization', `Bearer ${token}`);
+            res.cookie('Authorization', `Bearer ${token}`, {path: '/homepage'});
             res.json({
                 ok: true,
                 user: {
@@ -141,7 +141,7 @@ module.exports = function (app) {
 
     app.get('/logout', (req, res) => {
         console.log(`Logout response: ${res}`)
-        res.clearCookie('Authorization')
+        res.clearCookie('Authorization', {path: '/homepage'})
         res.redirect(301, '/')
     });
 
