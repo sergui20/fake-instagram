@@ -9,7 +9,7 @@ const Post = require('../models/posts');
 const generateToken = require('../config/generate-token');
 
 // Middlewares
-const authenticate = require('../middlewares/verify-token');
+const verifyToken = require('../middlewares/verify-token');
 const userActive = require('../middlewares/user-active');
 
 // Entries
@@ -18,11 +18,18 @@ const homepage = path.resolve(__dirname, '../../feed.html');
 
 module.exports = function (app) {
     app.get('/', userActive, (req, res) => {
+        // console.log(`Signin request: ${util.inspect(req)}`)
+        // res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        // res.set("Pragma", "no-cache");
+        // res.set("Expires", -1);
         res.sendFile(main);
     });
     
     // Signup
     app.get('/signup', userActive, (req, res) => {
+        // res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        // res.set("Pragma", "no-cache");
+        // res.set("Expires", -1);
         res.sendFile(main)
     });
 
@@ -68,9 +75,7 @@ module.exports = function (app) {
                         }
 
                         const token = generateToken(payload)
-                        res.cookie('Authorization', `Bearer ${token}`, {
-                            path: '/homepage'
-                        })
+                        res.cookie('Authorization', `Bearer ${token}`, {path: '/homepage'});
                         res.status(200).json({
                             ok: true,
                             user: {
@@ -88,6 +93,9 @@ module.exports = function (app) {
     
     // Signin
     app.get('/signin', userActive, (req, res) => {
+        // res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        // res.set("Pragma", "no-cache");
+        // res.set("Expires", -1);
         res.sendFile(main)
     });
 
@@ -126,9 +134,7 @@ module.exports = function (app) {
             }
 
             const token = generateToken(payload);
-            res.cookie('Authorization', `Bearer ${token}`, {
-                path: '/homepage'
-            });
+            res.cookie('Authorization', `Bearer ${token}`, {path: '/homepage'});
             res.status(200).json({
                 ok: true,
                 user: {
@@ -139,12 +145,23 @@ module.exports = function (app) {
         })
     })
 
-    app.get('/homepage', authenticate, (req, res) => {
+    app.get('/homepage', verifyToken, (req, res) => {
+        req.app.locals.isAuthenticated = true
+
+        // res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        // res.set("Pragma", "no-cache");
+        // res.set("Expires", -1);
         res.sendFile(homepage)
     });
 
     app.get('/logout', (req, res) => {
-        res.clearCookie('Authorization', {path: '/homepage'})
+        req.app.locals.isAuthenticated = false
+
+        // res.clearCookie('Authorization', {path: '/'})
+        res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.set("Pragma", "no-cache");
+        res.set("Expires", -1);
+        
         res.redirect(301, '/')
     });
 

@@ -25,6 +25,9 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
 // Settings
 app.set('port', process.env.PORT || 8080);
 
+// Local
+app.locals.isAuthenticated = false;
+
 // Middlewares
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(cookieParser())
@@ -40,7 +43,14 @@ app.use(express.json());
 // app.use(flash());
 
 // Static files
-app.use(express.static('public'));
+app.use(express.static('public', {
+    etag: false
+    // setHeaders: function (res, path, stat) {
+    //     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    //     res.set("Pragma", "no-cache");
+    //     res.set("Expires", -1)
+    // }
+}));
 
 // Routes
 require('./routes/routes')(app)
