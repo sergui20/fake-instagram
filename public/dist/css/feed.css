@@ -71,6 +71,14 @@ ul.dropdown-content {
 ul.dropdown-content li a {
     color: #242021;
 }
+div.settings-bar {
+    text-align: center;
+}
+
+i.fas.fa-bars {
+    color: #242021;
+    line-height: unset;
+}
 div.header-post {
     padding: 10px 16px;
 }
