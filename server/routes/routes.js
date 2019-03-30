@@ -155,8 +155,13 @@ module.exports = function (app) {
     });
 
     app.get('/logout', (req, res) => {
-        // console.log(`Logout response: ${res}`)
-        res.clearCookie('Authorization', {path: '/homepage'})
+        req.app.locals.isAuthenticated = false
+
+        // res.clearCookie('Authorization', {path: '/'})
+        res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.set("Pragma", "no-cache");
+        res.set("Expires", -1);
+        
         res.redirect(301, '/')
     });
 

@@ -1,11 +1,8 @@
 require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
-// const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-// const passport = require('passport');
-// const session = require('express-session');
 
 const app = express();
 
@@ -15,12 +12,6 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
 
     console.log('Base de datos online');
 })
-
-// ENV variables
-// require('dotenv').config()
-
-// Passport config
-// require('./config/passport')(passport);
 
 // Settings
 app.set('port', process.env.PORT || 8080);
@@ -33,23 +24,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-// app.use(session({
-//     secret: 'SNMC1999',
-//     resave: false,
-//     saveUninitialized: false
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(flash());
 
 // Static files
 app.use(express.static('public', {
     etag: false
-    // setHeaders: function (res, path, stat) {
-    //     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    //     res.set("Pragma", "no-cache");
-    //     res.set("Expires", -1)
-    // }
 }));
 
 // Routes
