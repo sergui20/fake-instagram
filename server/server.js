@@ -2,7 +2,6 @@ require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 
 const app = express();
 
@@ -20,7 +19,6 @@ app.set('port', process.env.PORT || 8080);
 app.locals.isAuthenticated = false;
 
 // Middlewares
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());

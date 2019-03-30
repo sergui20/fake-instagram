@@ -1,5 +1,4 @@
 const path = require('path');
-const util = require('util');
 
 // Models
 const User = require('../models/users');
