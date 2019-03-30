@@ -27,6 +27,13 @@ class UserAccount extends React.Component {
         document.removeEventListener('click', this.tooggleEventListener)
     }
 
+    logout = () => {
+        document.cookie = 'Authorization=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/homepage';
+        console.log(document.cookie)
+
+        window.location.href = '/logout'
+    }
+
     render() {
         return (
             <div className="col m4 hide-on-small-only">
@@ -36,7 +43,7 @@ class UserAccount extends React.Component {
                     <a className="dropdown-trigger btn" onClick={this.toggleDropdown}><i className="far fa-user header-account-buttons"></i></a>
                     {
                         this.state.viewDropdown &&
-                        <Dropdown></Dropdown>
+                        <Dropdown logout={this.logout}></Dropdown>
                     }
                 </div>
             </div>

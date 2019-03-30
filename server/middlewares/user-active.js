@@ -1,7 +1,5 @@
 function userActive (req, res, next) {
-    var bearerToken = req.cookies.Authorization;
-
-    if (bearerToken) {
+    if (req.app.locals.isAuthenticated) {
         res.redirect(301, '/homepage')
     } else {
         next();

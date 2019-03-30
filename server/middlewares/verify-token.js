@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-function authenticate (req, res, next) {
+function verifyToken (req, res, next) {
     var bearerToken = req.cookies.Authorization;
   
     // Decode token
@@ -16,14 +16,18 @@ function authenticate (req, res, next) {
                 });
                 
             } else {
-                req.userData = payload;
+                req.active = true
                 next();
             }
         });
 
     } else {
+        res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.set("Pragma", "no-cache");
+        res.set("Expires", -1);
+
         res.redirect(301, '/')
     }
 }
 
-module.exports = authenticate;
+module.exports = verifyToken;
