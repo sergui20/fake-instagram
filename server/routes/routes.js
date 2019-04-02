@@ -182,6 +182,7 @@ module.exports = function (app) {
     app.get('/api/posts', (req, res) => {
         Post.find({})
             .populate('user', 'name username email img')
+            .sort({uploaded: 'descending'})
             .exec((err, postsDB) => {
                 if (err) {
                     return res.json({

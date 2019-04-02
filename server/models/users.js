@@ -36,6 +36,10 @@ const usersSchema = new Schema({
         default: 'USER_ROLE',
         enum: validRoles
     },
+    registered: {
+        type: Date,
+        default: Date.now
+    },
     status: {
         type: Boolean,
         default: true
