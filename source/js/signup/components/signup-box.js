@@ -45,7 +45,7 @@ class SignupBox extends React.Component {
 
                 } else {
                     const user = res.data.user
-                    console.log(`ID Signup: ${JSON.stringify(user)}`)
+
                     localStorage.setItem('user', JSON.stringify(user))
                     window.location.href = '/homepage'
                 }

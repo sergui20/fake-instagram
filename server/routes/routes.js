@@ -1,4 +1,19 @@
 const path = require('path');
+const util = require('util');
+
+// Multipart/form-data
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.resolve(__dirname, '../../public/uploads/posts'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${req.query._id}-${Date.now()}-${file.originalname}`)
+    }
+})
+
+const upload = multer({storage: storage})
 
 // Models
 const User = require('../models/users');
@@ -190,12 +205,14 @@ module.exports = function (app) {
             })
     })
 
-    app.post('/api/posts', (req, res) => {
-        const { path, user, location } = req.body;
+    app.post('/api/posts', upload.single('webcam'), (req, res) => {
+        console.log(util.inspect(req.file));
+        const ID = req.query._id
+        const location = req.query.location
 
         const newPost = new Post();
-        newPost.path = path
-        newPost.user = user
+        newPost.path = `/uploads/posts/${req.file.filename}`
+        newPost.user = ID
         newPost.location = location
 
         newPost.save(function(err, postDB) {

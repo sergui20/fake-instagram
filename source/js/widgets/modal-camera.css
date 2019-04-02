@@ -1,0 +1,51 @@
+form.form-media-upload {
+    text-align: center;
+}
+
+.btn {
+    background-color: #242021;
+}
+
+.btn:hover {
+    background-color: #242021;
+}
+
+div.modal {
+    display: block !important;
+    z-index: 1;
+}
+
+div.modal-content {
+    padding: 10 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+div#open-camera {
+    width: 350px;
+    height: 350px;
+}
+
+div.div-camera-anchor {
+    margin-right: 10px;
+}
+
+div.div-camera-anchor, div.div-file-anchor {
+    display: inline-block;
+}
+
+a.btn-flat {
+    background-color: #b71c1c;
+    color: white;
+    margin-left: 30px !important;
+}
+
+a.btn-upload {
+    margin-left: 30px !important;
+}
+
+div.footer-buttons {
+    padding: 0 85px;
+    display: flex;
+    justify-content: center;
+}
