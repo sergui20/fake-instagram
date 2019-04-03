@@ -299,6 +299,7 @@ form.form-media-upload {
 }
 
 div.modal {
+    top: 15%;
     display: block !important;
     z-index: 1;
 }
@@ -312,6 +313,10 @@ div.modal-content {
 div#open-camera {
     width: 350px;
     height: 350px;
+}
+
+div.camera-button {
+    display: inline-block;
 }
 
 div.div-camera-anchor {
@@ -336,6 +341,11 @@ div.footer-buttons {
     padding: 0 85px;
     display: flex;
     justify-content: center;
+}
+
+p.file-path-paragraph {
+    margin: 1em 10em;
+    border-bottom: 3px solid #242021;
 }
 body {
     background-color: #fafafa;

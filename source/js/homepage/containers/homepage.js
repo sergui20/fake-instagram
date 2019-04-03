@@ -6,7 +6,7 @@ import HomepageLayout from '../components/homepageLayout';
 import FeedContainer from '../components/feedContainer';
 import Widgets from './widgetsContainer';
 import Loader from '../../widgets/loader';
-import ModalCamera from '../../widgets/modal-camera';
+import FileForm from '../../widgets/file-form';
 
 class Homepage extends React.Component {
     state = {
@@ -165,7 +165,7 @@ class Homepage extends React.Component {
                     <Loader></Loader>
                     :
                     <div>
-                        <ModalCamera userID={this.state.user.id} openModal={this.openModal} freeze={this.freeze} unfreeze={this.unfreeze} location={this.state.location} postSnap={this.postSnap} closeModal={this.closeModal} uploading={this.state.uploading} modalCamera={this.state.modalCamera} defaultButtons={this.state.defaultButtons}></ModalCamera>
+                        <FileForm userID={this.state.user.id} openModal={this.openModal} freeze={this.freeze} unfreeze={this.unfreeze} location={this.state.location} postSnap={this.postSnap} closeModal={this.closeModal} uploading={this.state.uploading} modalCamera={this.state.modalCamera} defaultButtons={this.state.defaultButtons}></FileForm>
                         <FeedContainer postsData={this.state.posts}></FeedContainer>
                         <Widgets userInfo={this.state.user}></Widgets>
                     </div>
