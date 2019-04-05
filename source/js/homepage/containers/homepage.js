@@ -61,7 +61,11 @@ class Homepage extends React.Component {
             })  
 
         } else {
-            console.log('Geolocation is not supported')
+            console.log('Geolocation is not supported');
+
+            this.setState({
+                loading: false
+            })
         }
         
     }
