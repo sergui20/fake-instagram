@@ -11,7 +11,7 @@ import FileForm from '../../widgets/file-form';
 class Homepage extends React.Component {
     state = {
         user: null,
-        posts: null,
+        posts: [],
         loading: true,
         location: null,
         uploading: false,
