@@ -58,14 +58,18 @@ class Homepage extends React.Component {
                     .catch(err => {
                         console.log(err)
                     })
+            }, (error) => {
+                if (error.code == error.PERMISSION_DENIED) {
+                    this.setState({
+                        loading: false
+                    })
+
+                    console.log("You denied Geolocation")
+                }
             })  
 
         } else {
             console.log('Geolocation is not supported');
-
-            this.setState({
-                loading: false
-            })
         }
         
     }
