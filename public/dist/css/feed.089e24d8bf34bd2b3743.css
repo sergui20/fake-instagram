@@ -286,6 +286,91 @@ p.no-stories-p {
     position: relative;
     top: 30%;
 }
+form.form-media-upload {
+    text-align: center;
+}
+
+div.row-file-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+div.file-buttons {
+    width: unset !important;
+    margin-left: unset !important;
+}
+
+.btn {
+    background-color: #242021;
+}
+
+.btn:hover {
+    background-color: #242021;
+}
+
+.btn.cancel-btn {
+    background-color: #b71c1c
+}
+
+.btn.cancel-btn:hover {
+    background-color: #b71c1c;
+}
+
+div.modal {
+    top: 15%;
+    display: block !important;
+    z-index: 1;
+}
+
+div.modal-content {
+    padding: 10 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+div#open-camera {
+    width: 350px;
+    height: 350px;
+}
+
+div.camera-button {
+    display: inline-block;
+}
+
+div.div-camera-anchor {
+    margin-right: 10px;
+}
+
+div.div-camera-anchor, div.div-file-anchor {
+    display: inline-block;
+    margin-right: 0.75em;
+}
+
+a.btn-flat {
+    background-color: #b71c1c;
+    color: white;
+    margin-left: 30px !important;
+}
+
+a.btn-upload {
+    margin-left: 30px !important;
+}
+
+div.footer-buttons {
+    padding: 0 85px;
+    display: flex;
+    justify-content: center;
+}
+
+div.file-upload-container {
+    display: inline-block;
+}
+
+p.file-path-paragraph {
+    border-bottom: 3px solid #242021;
+}
 body {
     background-color: #fafafa;
 }

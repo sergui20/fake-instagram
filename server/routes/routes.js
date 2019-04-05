@@ -13,7 +13,20 @@ var storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage: storage})
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif|JPG|JPEG|GIF|PNG/;
+        const mimeType = fileTypes.test(file.mimetype);
+        const extName = fileTypes.test(path.extname(file.originalname));
+        
+        if (mimeType && extName) {
+            return cb(null, true)
+        }
+        
+        cb("Error: Invalid file extension")
+    }
+})
 
 // Models
 const User = require('../models/users');
@@ -206,13 +219,13 @@ module.exports = function (app) {
             })
     })
 
-    app.post('/api/posts', upload.single('webcam'), (req, res) => {
-        console.log(util.inspect(req.file));
+    app.post('/api/posts', upload.any(), (req, res) => {
+        console.log(util.inspect(req.files[0].filename));
         const ID = req.query._id
         const location = req.query.location
 
         const newPost = new Post();
-        newPost.path = `/uploads/posts/${req.file.filename}`
+        newPost.path = `/uploads/posts/${req.files[0].filename}`
         newPost.user = ID
         newPost.location = location
 
@@ -227,7 +240,7 @@ module.exports = function (app) {
 
             return res.json({
                 ok: true,
-                post: postDB
+                message: "Posted !"
             })
         })
     })

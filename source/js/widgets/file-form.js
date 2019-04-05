@@ -4,41 +4,29 @@ import React from 'react';
 
 import ModalCamera from './modal-camera';
 import UploadFile from './upload-file';
+import FilePreviewBox from './file-preview-box';
+import Loader from './loader';
 
 import './file-form.css';
 
 class FileForm extends React.Component {
-    state = {
-        fileButtons: false,
-        filePath: null
-    }
-
-    handleFile = (ev) => {
-        console.log(ev.target)
-        const path = ev.target.value.split('fakepath').join("")
-        const fileName = path.split("C:")
-
-        this.setState({
-            filePath: fileName,
-            fileButtons: true
-        })
-    }
-
-    cancelFile = () => {
-        this.setState({
-            fileButtons: false
-        })
-    }
-
     render () {
         return (
             <div className="row">
                 <div className="col s12">
                     <div className="file-input-container">
-                        <form action={`/api/posts/`} encType="multipart/form-data" className="form-media-upload" id="formUpload">
-                            <ModalCamera fileButtons={this.state.fileButtons} openModal={this.props.openModal} cancelFile={this.cancelFile} filePath={this.state.filePath} modalCamera={this.props.modalCamera} uploading={this.props.uploading} defaultButtons={this.props.defaultButtons} freeze={this.props.freeze} closeModal={this.props.closeModal} unfreeze={this.props.unfreeze} postSnap={this.props.postSnap} handleFile={this.handleFile}></ModalCamera>
-                            <UploadFile fileButtons={this.state.fileButtons} handleFile={this.handleFile} cancelFile={this.cancelFile} filePath={this.state.filePath}></UploadFile>
-                        </form>
+                        {
+                            this.props.uploading ?
+                            <Loader></Loader>
+                            :
+                            <form ref={this.props.setForm} encType="multipart/form-data" className="form-media-upload" id="formUpload" onSubmit={this.props.submitFile}>
+                                <div className="row row-file-buttons">
+                                    <ModalCamera fileButtons={this.props.fileButtons} openModal={this.props.openModal} cancelFile={this.props.cancelFile} modalCamera={this.props.modalCamera} uploading={this.props.uploading} defaultButtons={this.props.defaultButtons} freeze={this.props.freeze} closeModal={this.props.closeModal} unfreeze={this.props.unfreeze} postSnap={this.props.postSnap} handleFile={this.props.handleFile}></ModalCamera>
+                                    <UploadFile fileButtons={this.props.fileButtons} handleFile={this.props.handleFile} cancelFile={this.props.cancelFile}></UploadFile>
+                                </div>
+                                <FilePreviewBox fileButtons={this.props.fileButtons} filePath={this.props.filePath}></FilePreviewBox>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

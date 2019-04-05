@@ -17,7 +17,14 @@ class Homepage extends React.Component {
         uploading: false,
         modalCamera: false,
         defaultButtons: true,
-        userID: null
+        userID: null,
+        fileButtons: false,
+        filePath: null
+    }
+
+    setForm = (form) => {
+        this.form = form
+        console.log(this.form)
     }
 
     componentWillMount() {
@@ -44,7 +51,8 @@ class Homepage extends React.Component {
                             location: {
                                 county,
                                 state
-                            }
+                            },
+                            loading: false
                         })
                     })
                     .catch(err => {
@@ -71,8 +79,7 @@ class Homepage extends React.Component {
             })
             .then(posts => {
                 return this.setState({
-                    posts,
-                    loading: false
+                    posts
                 })
                 
             })
@@ -157,6 +164,55 @@ class Homepage extends React.Component {
         webcam.reset()
     }
 
+    handleFile = (ev) => {
+        console.log(ev.target.files)
+        const fileName = ev.target.files[0].name
+
+        this.setState({
+            filePath: fileName,
+            fileButtons: true
+        })
+    }
+
+    cancelFile = () => {
+        this.setState({
+            fileButtons: false
+        })
+    }
+
+    submitFile = (ev) => {
+        ev.preventDefault()
+
+        this.setState({
+            uploading: true
+        })
+
+        const ID = this.getUserID()
+        const url = `/api/posts?_id=${ID}&location=${this.state.location.county}, ${this.state.location.state}`
+
+        const formData = new FormData(this.form)
+
+        axios.post(url, formData, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+            .then(res => {
+                if (res.data.ok) {
+                    this.setState({
+                        fileButtons: false,
+                        modalCamera: false,
+                        uploading: false
+                    })
+
+                    this.getPosts()
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
         return (
             <HomepageLayout>
@@ -165,7 +221,7 @@ class Homepage extends React.Component {
                     <Loader></Loader>
                     :
                     <div>
-                        <FileForm userID={this.state.user.id} openModal={this.openModal} freeze={this.freeze} unfreeze={this.unfreeze} location={this.state.location} postSnap={this.postSnap} closeModal={this.closeModal} uploading={this.state.uploading} modalCamera={this.state.modalCamera} defaultButtons={this.state.defaultButtons}></FileForm>
+                        <FileForm setForm={this.setForm} uploading={this.state.uploading} userID={this.state.user.id} fileButtons={this.state.fileButtons} filePath={this.state.filePath} handleFile={this.handleFile} submitFile={this.submitFile} cancelFile={this.cancelFile} openModal={this.openModal} freeze={this.freeze} unfreeze={this.unfreeze} location={this.state.location} postSnap={this.postSnap} closeModal={this.closeModal} uploading={this.state.uploading} modalCamera={this.state.modalCamera} defaultButtons={this.state.defaultButtons}></FileForm>
                         <FeedContainer postsData={this.state.posts}></FeedContainer>
                         <Widgets userInfo={this.state.user}></Widgets>
                     </div>

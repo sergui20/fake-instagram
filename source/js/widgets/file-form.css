@@ -2,12 +2,32 @@ form.form-media-upload {
     text-align: center;
 }
 
+div.row-file-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+div.file-buttons {
+    width: unset !important;
+    margin-left: unset !important;
+}
+
 .btn {
     background-color: #242021;
 }
 
 .btn:hover {
     background-color: #242021;
+}
+
+.btn.cancel-btn {
+    background-color: #b71c1c
+}
+
+.btn.cancel-btn:hover {
+    background-color: #b71c1c;
 }
 
 div.modal {
@@ -37,6 +57,7 @@ div.div-camera-anchor {
 
 div.div-camera-anchor, div.div-file-anchor {
     display: inline-block;
+    margin-right: 0.75em;
 }
 
 a.btn-flat {
@@ -55,7 +76,10 @@ div.footer-buttons {
     justify-content: center;
 }
 
+div.file-upload-container {
+    display: inline-block;
+}
+
 p.file-path-paragraph {
-    margin: 1em 10em;
     border-bottom: 3px solid #242021;
 }
