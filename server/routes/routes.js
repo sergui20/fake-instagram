@@ -222,12 +222,22 @@ module.exports = function (app) {
     app.post('/api/posts', upload.any(), (req, res) => {
         console.log(util.inspect(req.files[0].filename));
         const ID = req.query._id
-        const location = req.query.location
 
-        const newPost = new Post();
-        newPost.path = `/uploads/posts/${req.files[0].filename}`
-        newPost.user = ID
-        newPost.location = location
+        let newPost;
+        
+        if (req.query.location) {
+            const location = req.query.location
+
+            newPost = new Post();
+            newPost.path = `/uploads/posts/${req.files[0].filename}`
+            newPost.user = ID
+            newPost.location = location
+
+        } else {
+            newPost = new Post();
+            newPost.path = `/uploads/posts/${req.files[0].filename}`
+            newPost.user = ID
+        }
 
         newPost.save(function(err, postDB) {
             if (err) {

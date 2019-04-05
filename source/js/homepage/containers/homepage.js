@@ -61,6 +61,7 @@ class Homepage extends React.Component {
             }, (error) => {
                 if (error.code == error.PERMISSION_DENIED) {
                     this.setState({
+                        location: null,
                         loading: false
                     })
 
@@ -148,7 +149,14 @@ class Homepage extends React.Component {
             })
 
             const ID = this.getUserID()
-            const url = `/api/posts?_id=${ID}&location=${this.state.location.county}, ${this.state.location.state}`
+
+            let url
+
+            if (this.state.location) {
+                url = `/api/posts?_id=${ID}&location=${this.state.location.county}, ${this.state.location.state}`
+            } else {
+                url = `/api/posts?_id=${ID}`
+            }
 
             webcam.upload(photo_uri, url, (code, text) => {
                 if (code === 200) {
@@ -196,7 +204,15 @@ class Homepage extends React.Component {
         })
 
         const ID = this.getUserID()
-        const url = `/api/posts?_id=${ID}&location=${this.state.location.county}, ${this.state.location.state}`
+
+        let url
+
+        if (this.state.location) {
+            url = `/api/posts?_id=${ID}&location=${this.state.location.county}, ${this.state.location.state}`
+        } else {
+            url = `/api/posts?_id=${ID}`
+        }
+
 
         const formData = new FormData(this.form)
 
