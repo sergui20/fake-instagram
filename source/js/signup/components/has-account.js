@@ -7,10 +7,10 @@ import './has-account.css';
 function HasAccount (props) {
     return (
         <p className="has-account-p">
-            ¿Tienes una cuenta?
+            Have an account ?
             <Link exact="true" to={{
                 pathname: '/'
-            }} onClick={props.toggleSignupBox}> Entrar</Link>
+            }} onClick={props.toggleSignupBox}> Login</Link>
         </p>
     )
 }

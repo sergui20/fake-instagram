@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import axios from 'axios';
 import webcam from 'webcamjs';
 
@@ -19,7 +19,8 @@ class Homepage extends React.Component {
         defaultButtons: true,
         userID: null,
         fileButtons: false,
-        filePath: null
+        filePath: null,
+        postKey: null
     }
 
     setForm = (form) => {
@@ -237,6 +238,44 @@ class Homepage extends React.Component {
             })
     }
 
+    toggleDeleteDropdown = (ev) => {
+        const postKey = ev.target.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("data-key")
+
+        console.log(postKey)
+
+        this.setState({
+            postKey
+        })
+
+        document.addEventListener('click', this.toggleEventListener)
+    }
+
+    toggleEventListener = () => {
+        this.setState({
+            postKey: null
+        })
+        
+        document.removeEventListener('click', this.toggleEventListener)
+    }
+
+    deletePost = () => {
+        const url = `/api/posts/${this.state.postKey}`;
+
+        axios.delete(url, {
+            data: {
+                userID: this.state.user.id
+            }
+        })
+        .then(res => {
+            if (res.data.ok) {
+                this.getPosts()
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     render() {
         return (
             <HomepageLayout>
@@ -244,11 +283,11 @@ class Homepage extends React.Component {
                     this.state.loading ?
                     <Loader></Loader>
                     :
-                    <div>
+                    <Fragment>
                         <FileForm setForm={this.setForm} uploading={this.state.uploading} userID={this.state.user.id} fileButtons={this.state.fileButtons} filePath={this.state.filePath} handleFile={this.handleFile} submitFile={this.submitFile} cancelFile={this.cancelFile} openModal={this.openModal} freeze={this.freeze} unfreeze={this.unfreeze} location={this.state.location} postSnap={this.postSnap} closeModal={this.closeModal} uploading={this.state.uploading} modalCamera={this.state.modalCamera} defaultButtons={this.state.defaultButtons}></FileForm>
-                        <FeedContainer postsData={this.state.posts}></FeedContainer>
+                        <FeedContainer postsData={this.state.posts} userID={this.state.user.id} toggleDeleteDropdown={this.toggleDeleteDropdown} postKey={this.state.postKey} deletePost={this.deletePost}></FeedContainer>
                         <Widgets userInfo={this.state.user}></Widgets>
-                    </div>
+                    </Fragment>
                 }
             </HomepageLayout>
         )

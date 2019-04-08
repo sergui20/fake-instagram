@@ -111,9 +111,7 @@ module.exports = function (app) {
                         })
                         // res.redirect(301, '/homepage')
                     }
-
                 })
-
             }
         })
     });
@@ -253,12 +251,44 @@ module.exports = function (app) {
                 message: "Posted !"
             })
         })
-    })
+    });
 
-    // app.get('/profile', (req, res) => {
-    //     res.json({
-    //         ok: true,
-    //         message: 'You are in profile !!'
-    //     })
-    // })
+    app.delete('/api/posts/:id', (req, res) => {
+        const postID = req.params.id;
+        const userID = req.body.userID;
+        
+        Post.find({_id: postID}, (err, postDB) => {
+            if (err) {
+                return res.json({
+                    ok: false,
+                    err,
+                    message: "Something went wrong. Please try again later"
+                })
+            }
+
+            console.log(userID, postDB[0].user)
+
+            if (userID != postDB[0].user) {
+                return res.json({
+                    ok: false,
+                    message: "Unauthorize to delete the post"
+                })
+            }
+
+            Post.deleteOne({_id: postID}, (err) => {
+                if (err) {
+                    return res.json({
+                        ok: false,
+                        err,
+                        message: "The post could not be deleted"
+                    })
+                }
+
+                return res.json({
+                    ok: true,
+                    message: "Post deleted"
+                })
+            })
+        })
+    });
 }

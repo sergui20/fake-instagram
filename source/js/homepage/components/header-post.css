@@ -3,9 +3,20 @@ div.header-post {
 }
 
 div.header-info {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+div.div-post-options {
+    position: absolute;
+    right: -15px;
+}
+
+a.btn-post-options {
+    background-color: white !important;
+    color: #242021 !important;
 }
 
 .profileImg {
@@ -25,4 +36,20 @@ div.post-info a {
     display: block;
     color: #262626;
     font-weight: 600;
+}
+
+ul.dropdown-content-post {
+    display: block;
+    top: 50px;
+    right: -1px;
+    z-index: 0;
+}
+
+.fa-ellipsis-v:before {
+    margin: 0 15px;
+}
+
+a.delete-post {
+    color: red !important;
+    font-weight: 500; 
 }

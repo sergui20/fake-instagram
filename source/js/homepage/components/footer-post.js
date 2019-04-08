@@ -1,5 +1,7 @@
 import React from 'react';
 
+import moment from 'moment';
+
 import './footer-post.css';
 
 function FooterPost (props) {
@@ -30,7 +32,7 @@ function FooterPost (props) {
                 comments
             </div> */}
             <div>
-                <span className="time-counter">Hace 3 horas</span>
+                <span className="time-counter">{moment(props.date).fromNow()}</span>
             </div>
             {/* <div>
                 <div>

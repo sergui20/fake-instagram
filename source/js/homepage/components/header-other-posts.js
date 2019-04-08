@@ -2,9 +2,7 @@ import React from 'react';
 
 import ProfileImgStory from './div-img-story';
 
-import './header-post.css'
-
-function HeaderPost (props) {
+function HeaderOtherPosts (props) {
     return (
         <div className="header-post">
             <div className="header-info">
@@ -20,4 +18,4 @@ function HeaderPost (props) {
     )
 }
 
-export default HeaderPost;
+export default HeaderOtherPosts;

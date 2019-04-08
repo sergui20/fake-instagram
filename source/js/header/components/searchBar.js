@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
             <div className="col s5 m4">
                 <div className="searchBar">
                     <form action={true} className="form-header">
-                        <input className="input-header" method="get" encType="text/plain" type="text" name="search" placeholder="Buscar"></input>
+                        <input className="input-header" method="get" encType="text/plain" type="text" name="search" placeholder="Search"></input>
                     </form>
                 </div>
             </div>

@@ -8,7 +8,7 @@ function FeedContainer (props) {
     return (
         <FeedPostsBox>
             <FeedRow>
-                <Posts postsData={props.postsData}></Posts>
+                <Posts postsData={props.postsData} userID={props.userID} toggleDeleteDropdown={props.toggleDeleteDropdown} postKey={props.postKey} deletePost={props.deletePost}></Posts>
             </FeedRow>
         </FeedPostsBox>
     )   

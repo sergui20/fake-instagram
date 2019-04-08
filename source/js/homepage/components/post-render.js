@@ -1,18 +1,17 @@
 import React from 'react';
 
-import HeaderPost from './header-post';
+import HeaderMyPosts from './header-my-post';
+import HeaderOtherPosts from './header-other-posts';
+
 import ImgPost from './img-post';
 import FooterPost from './footer-post';
 
-// import data from '../../../../api.json';
-
 import './post-render.css';
-
-// const posts = data.posts;
+import './header-post.css';
 
 class PostRender extends React.Component {
     state = {
-        liked: false
+        liked: false,
     }
 
     toggleLiked = () => {
@@ -24,13 +23,27 @@ class PostRender extends React.Component {
     render() {
         return (
             this.props.postsData.map((post) => {
-                return (
-                    <article className="post" key={post._id}>
-                        <HeaderPost {...post}></HeaderPost>   
-                        <ImgPost src={post.path}></ImgPost>
-                        <FooterPost likes={post.likes} liked={this.state.liked} toggleLiked={this.toggleLiked}></FooterPost>
-                    </article>
-                )
+                //For user posts
+                console.log(post.user._id, this.props.userID)
+                if (post.user._id === this.props.userID) {
+                    return (
+                        <article ref={`article${post._id}`} className="post" key={post._id} data-key={post._id}>
+                            <HeaderMyPosts {...post} toggleDeleteDropdown={this.props.toggleDeleteDropdown} postKey={this.props.postKey} deletePost={this.props.deletePost}></HeaderMyPosts>   
+                            <ImgPost src={post.path}></ImgPost>
+                            <FooterPost likes={post.likes} liked={this.state.liked} toggleLiked={this.toggleLiked} date={post.uploaded}></FooterPost>
+                        </article>
+                    )
+                }
+                // For other posts 
+                else {
+                    return (
+                        <article className="post" key={post._id} data-key={post._id}>
+                            <HeaderOtherPosts {...post}></HeaderOtherPosts>   
+                            <ImgPost src={post.path}></ImgPost>
+                            <FooterPost likes={post.likes} liked={this.state.liked} toggleLiked={this.toggleLiked} date={post.uploaded}></FooterPost>
+                        </article>
+                    )
+                }
             })
         )
     }
