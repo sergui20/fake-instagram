@@ -5,7 +5,7 @@ import Loader from './loader';
 function ModalCamera(props) {
     return (
         ! props.fileButtons &&
-        <div className="col s3 file-buttons hide-on-small-only">
+        <div className="col s3 file-buttons hide-on-med-and-down">
             <div className="camera-button">
                 <div className="div-camera-anchor">
                     <a className="btn" onClick={props.openModal}><i className="fas fa-camera"></i> Take a picture</a>
