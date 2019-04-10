@@ -79,6 +79,32 @@ i.fas.fa-bars {
     color: #242021;
     line-height: unset;
 }
+div.div-post-heart {
+    position: absolute;
+    top: 50%;
+    margin-top: -120px;
+    left: 50%;
+    margin-left: -120px;
+    transform: scale(0)  
+}
+
+div.div-post-heart-active {
+    position: absolute;
+    top: 50%;
+    margin-top: -120px;
+    left: 50%;
+    margin-left: -120px;
+    -webkit-transition: all .6s ease-in;
+    transition: all .6s ease-in;  
+}
+
+i.post-heart {
+    font-size: 16em;
+}
+div.img-post-div {
+    position: relative;
+}
+
 .img-post {
     width: 100%;
     height: 600px;
