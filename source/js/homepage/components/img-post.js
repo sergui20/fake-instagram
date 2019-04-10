@@ -8,7 +8,7 @@ function ImgPost (props) {
     return (
         <div className="img-post-div" onDoubleClick={props.toggleLiked}>
             <img src={props.src} className="img-post"></img>
-            <Heart classHeart={props.classHeart}></Heart>
+            <Heart heart={props.heart}></Heart>
         </div>
     )
 }
