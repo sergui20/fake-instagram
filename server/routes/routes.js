@@ -253,6 +253,31 @@ module.exports = function (app) {
         })
     });
 
+    app.put('/api/posts/:postID/:likes/:userID/:liked', async (req, res) => {
+        const postID = req.params.postID
+        const likes = req.params.likes
+        const userID = req.params.userID
+        const liked = req.params.liked
+
+        console.log(liked)
+
+        if (liked == "true") {
+            const post = await Post.findOne({_id: postID})
+
+            post.likes = likes
+            post.likedBy.push(userID)
+            
+            await post.save()
+        } else {
+            const post = await Post.findOne({_id: postID})
+
+            post.likes = likes
+            post.likedBy.remove(userID)
+
+            await post.save()
+        }
+    })
+
     app.delete('/api/posts/:id', (req, res) => {
         const postID = req.params.id;
         const userID = req.body.userID;
@@ -266,7 +291,12 @@ module.exports = function (app) {
                 })
             }
 
-            console.log(userID, postDB[0].user)
+            if (!postDB) {
+                return res.json({
+                    ok: false,
+                    message: "Post not found"
+                })
+            }
 
             if (userID != postDB[0].user) {
                 return res.json({
