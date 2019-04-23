@@ -5,7 +5,7 @@ import './logo.css'
 function Logo () {
     return (
         <div className="col s5 m4">
-            <a href="/" className="logo">Platzigram</a>
+            <a href="/" className="logo">Instagram</a>
         </div>
     )
 }

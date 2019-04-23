@@ -6,7 +6,7 @@ function PlatzigramTitle () {
     return (
         <div className="row">
             <div className="col s12">
-                <h1 className="logo">Platzigram</h1>
+                <h1 className="logo">Instagram</h1>
             </div>
         </div>
     )
